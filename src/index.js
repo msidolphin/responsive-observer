@@ -32,14 +32,22 @@ export class ResponsiveObserver {
   dispatch (screens) {
     this.screens = JSON.parse(JSON.stringify(screens))
     if (this.subscriber && typeof this.subscriber === 'function') {
-      this.subscriber(screens)
+      this.subscriber(this.getResult(this.screens))
     }
   }
 
   subscribe (func) {
     this.register()
     this.subscriber = func
-    func(this.screens)
+    func(this.getResult(this.screens))
+  }
+
+  getResult (screens) {
+    const rets = {}
+    breakpointArray.forEach(breakpoint => {
+      rets[breakpoint] = screens[breakpoint] ? screens[breakpoint] : false
+    })
+    return rets
   }
 
   unsubscribe () {

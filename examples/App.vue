@@ -92,6 +92,7 @@ export default {
   created () {
     this.observer = new ResponsiveObserver()
     this.observer.subscribe((screens) => {
+      console.log(screens)
       this.generateRows(screens)
     })
   },
