@@ -1,7 +1,8 @@
-import enquire from 'enquire.js'
+var enquire = null
 
 // https://github.com/WickyNilliams/enquire.js/issues/82
 if (typeof window !== 'undefined') {
+  enquire = require('enquire.js')
   window.matchMedia = window.matchMedia || function () {
     return {
       matches: false,
